@@ -14,6 +14,7 @@ The SenseCAP Watcher is designed to be a multifunctional device, featuring:
 - External Connectivity: Capable of connecting with other devices and sensors, expanding its potential applications.
 
 Inside the Watcher, an advanced AI algorithm built on tinyML powers functionalities like gesture recognition, presence detection of people or animals, and other intelligent behaviors, making it adaptable to a wide range of uses.
+
 [![SenseCAP to semilimes video](https://img.youtube.com/vi/mABwcf7w49E/0.jpg)](https://www.youtube.com/watch?v=mABwcf7w49E)
 
 ### semilimes Integration: Unlocking Powerful Connectivity
