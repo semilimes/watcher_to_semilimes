@@ -1,0 +1,592 @@
+[
+    {
+        "id": "dcf1f7d23dd6b81a",
+        "type": "tab",
+        "label": "Seeedstudio SenseCAP Watcher",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c96278c627bd56d2",
+        "type": "OpenStream",
+        "z": "dcf1f7d23dd6b81a",
+        "name": "",
+        "qos": "0",
+        "broker": "965df41eaa7cda03",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "topic": "",
+        "eui": "",
+        "channel": "",
+        "measurementID": "",
+        "output": "raw",
+        "x": 300,
+        "y": 60,
+        "wires": [
+            [
+                "f1b27e7987035210",
+                "ea5fbee0a4b26581"
+            ]
+        ]
+    },
+    {
+        "id": "f1b27e7987035210",
+        "type": "switch",
+        "z": "dcf1f7d23dd6b81a",
+        "name": "First Run?",
+        "property": "#:(file)::savedChannelId",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 170,
+        "y": 240,
+        "wires": [
+            [
+                "5bb51eca21f0c911"
+            ],
+            [
+                "c9e7d361304c99e6",
+                "969d535d0355cb21"
+            ]
+        ]
+    },
+    {
+        "id": "5bb51eca21f0c911",
+        "type": "smeSender",
+        "z": "dcf1f7d23dd6b81a",
+        "connector": "e0fddb9c0f45f707",
+        "async": "0",
+        "name": "",
+        "actionName": "channel_create",
+        "actionText": "Channel - Create",
+        "recipientId": "",
+        "recipientIdType": "str",
+        "messageId": "",
+        "messageIdType": "str",
+        "limit": 0,
+        "limitType": "num",
+        "recipientIds": "",
+        "recipientIdsType": "str",
+        "groupChatId": "",
+        "groupChatIdType": "str",
+        "channelId": "",
+        "channelIdType": "str",
+        "title": "SenseCAP_Channel",
+        "titleType": "str",
+        "saveLocation": "#:(file)::savedChannelId",
+        "saveLocationType": "flow",
+        "saveRequestIdLocation": "savedRequestId",
+        "saveRequestIdLocationType": "msg",
+        "cameraList": [],
+        "logToConsole": false,
+        "x": 460,
+        "y": 220,
+        "wires": [
+            [
+                "0f233b90e156ce28",
+                "c410f62d49f00bd8"
+            ]
+        ]
+    },
+    {
+        "id": "0f233b90e156ce28",
+        "type": "smeMessage",
+        "z": "dcf1f7d23dd6b81a",
+        "name": "Text Message",
+        "message": "text",
+        "text": "payload",
+        "textType": "msg",
+        "html": "<b>This is an html message</b>",
+        "htmlType": "str",
+        "fileIds": "",
+        "fileIdsType": "str",
+        "contactIds": "",
+        "contactIdsType": "str",
+        "title": "",
+        "titleType": "str",
+        "description": "",
+        "descriptionType": "str",
+        "start": "",
+        "startType": "num",
+        "end": "",
+        "endType": "num",
+        "allDay": "true",
+        "allDayType": "bool",
+        "locationName": "myLocation",
+        "locationNameType": "str",
+        "latitude": "",
+        "latitudeType": "str",
+        "longitude": "",
+        "longitudeType": "str",
+        "url": "",
+        "urlType": "str",
+        "enableFullScreenView": "1",
+        "viewSize": "1:2",
+        "channelId": "",
+        "channelIdType": "str",
+        "tunnelId": "",
+        "tunnelIdType": "str",
+        "formLocation": "savedForm",
+        "formLocationType": "flow",
+        "x": 580,
+        "y": 320,
+        "wires": [
+            [
+                "c6b055f57570edd1"
+            ]
+        ]
+    },
+    {
+        "id": "81cab28924e9bf45",
+        "type": "smeSender",
+        "z": "dcf1f7d23dd6b81a",
+        "connector": "e0fddb9c0f45f707",
+        "async": "0",
+        "name": "",
+        "actionName": "channel_message_send",
+        "actionText": "Channel - Send Message",
+        "recipientId": "",
+        "recipientIdType": "str",
+        "messageId": "",
+        "messageIdType": "str",
+        "limit": 0,
+        "limitType": "num",
+        "recipientIds": "",
+        "recipientIdsType": "str",
+        "groupChatId": "",
+        "groupChatIdType": "str",
+        "channelId": "#:(file)::savedChannelId",
+        "channelIdType": "flow",
+        "title": "",
+        "titleType": "str",
+        "saveLocation": "#:(file)::savedMessageId",
+        "saveLocationType": "flow",
+        "saveRequestIdLocation": "savedRequestId",
+        "saveRequestIdLocationType": "msg",
+        "cameraList": [],
+        "logToConsole": false,
+        "x": 1030,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c6b055f57570edd1",
+        "type": "switch",
+        "z": "dcf1f7d23dd6b81a",
+        "name": "First Message?",
+        "property": "#:(file)::savedMessageId",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 780,
+        "y": 320,
+        "wires": [
+            [
+                "81cab28924e9bf45"
+            ],
+            [
+                "09d3b73d50efd322"
+            ]
+        ]
+    },
+    {
+        "id": "09d3b73d50efd322",
+        "type": "smeSender",
+        "z": "dcf1f7d23dd6b81a",
+        "connector": "e0fddb9c0f45f707",
+        "async": "0",
+        "name": "",
+        "actionName": "channel_message_update",
+        "actionText": "Channel - Update Message",
+        "recipientId": "",
+        "recipientIdType": "str",
+        "messageId": "#:(file)::savedMessageId",
+        "messageIdType": "flow",
+        "limit": 0,
+        "limitType": "num",
+        "recipientIds": "",
+        "recipientIdsType": "str",
+        "groupChatId": "",
+        "groupChatIdType": "str",
+        "channelId": "",
+        "channelIdType": "str",
+        "title": "",
+        "titleType": "str",
+        "saveLocation": "savedEntityId",
+        "saveLocationType": "msg",
+        "saveRequestIdLocation": "savedRequestId",
+        "saveRequestIdLocationType": "msg",
+        "cameraList": [],
+        "logToConsole": false,
+        "x": 1040,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "415755b63c944506",
+        "type": "change",
+        "z": "dcf1f7d23dd6b81a",
+        "name": "delete channel Id from context",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "#:(file)::savedChannelId",
+                "pt": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "55a5f1a38f28aa7e",
+        "type": "inject",
+        "z": "dcf1f7d23dd6b81a",
+        "name": "Clean up",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 360,
+        "y": 520,
+        "wires": [
+            [
+                "415755b63c944506",
+                "0b46e40bb0b3254a",
+                "d5b41273e3e445cb"
+            ]
+        ]
+    },
+    {
+        "id": "0b46e40bb0b3254a",
+        "type": "change",
+        "z": "dcf1f7d23dd6b81a",
+        "name": "delete message Id from context",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "#:(file)::savedMessageId",
+                "pt": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "969d535d0355cb21",
+        "type": "function",
+        "z": "dcf1f7d23dd6b81a",
+        "name": "send_img",
+        "func": "node.send({ payload: msg.payload.value[0].image_url });",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 380,
+        "wires": [
+            [
+                "c410f62d49f00bd8",
+                "b7ae78189280d3d0"
+            ]
+        ]
+    },
+    {
+        "id": "c9e7d361304c99e6",
+        "type": "function",
+        "z": "dcf1f7d23dd6b81a",
+        "name": "send_txt_msg",
+        "func": "node.send({ payload: msg.payload.value[0].content });",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 320,
+        "wires": [
+            [
+                "0f233b90e156ce28",
+                "b7ae78189280d3d0"
+            ]
+        ]
+    },
+    {
+        "id": "c410f62d49f00bd8",
+        "type": "smeMessage",
+        "z": "dcf1f7d23dd6b81a",
+        "name": "Img Url",
+        "message": "text",
+        "text": "payload",
+        "textType": "msg",
+        "html": "<b>This is an html message</b>",
+        "htmlType": "str",
+        "fileIds": "payload",
+        "fileIdsType": "msg",
+        "contactIds": "",
+        "contactIdsType": "str",
+        "title": "",
+        "titleType": "str",
+        "description": "",
+        "descriptionType": "str",
+        "start": "",
+        "startType": "num",
+        "end": "",
+        "endType": "num",
+        "allDay": "true",
+        "allDayType": "bool",
+        "locationName": "myLocation",
+        "locationNameType": "str",
+        "latitude": "",
+        "latitudeType": "str",
+        "longitude": "",
+        "longitudeType": "str",
+        "url": "",
+        "urlType": "str",
+        "enableFullScreenView": "1",
+        "viewSize": "1:2",
+        "channelId": "",
+        "channelIdType": "str",
+        "tunnelId": "",
+        "tunnelIdType": "str",
+        "formLocation": "savedForm",
+        "formLocationType": "flow",
+        "x": 560,
+        "y": 380,
+        "wires": [
+            [
+                "0674795ad22f46d2"
+            ]
+        ]
+    },
+    {
+        "id": "e62598d3d9906bcd",
+        "type": "smeSender",
+        "z": "dcf1f7d23dd6b81a",
+        "connector": "e0fddb9c0f45f707",
+        "async": "0",
+        "name": "",
+        "actionName": "channel_message_update",
+        "actionText": "Channel - Update Message",
+        "recipientId": "",
+        "recipientIdType": "str",
+        "messageId": "#:(file)::savedImageId",
+        "messageIdType": "flow",
+        "limit": 0,
+        "limitType": "num",
+        "recipientIds": "",
+        "recipientIdsType": "str",
+        "groupChatId": "",
+        "groupChatIdType": "str",
+        "channelId": "",
+        "channelIdType": "str",
+        "title": "",
+        "titleType": "str",
+        "saveLocation": "savedEntityId",
+        "saveLocationType": "msg",
+        "saveRequestIdLocation": "savedRequestId",
+        "saveRequestIdLocationType": "msg",
+        "cameraList": [],
+        "logToConsole": false,
+        "x": 1040,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0674795ad22f46d2",
+        "type": "switch",
+        "z": "dcf1f7d23dd6b81a",
+        "name": "First Message?",
+        "property": "#:(file)::savedImageId",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 780,
+        "y": 380,
+        "wires": [
+            [
+                "a21f1776b3fff9c2"
+            ],
+            [
+                "e62598d3d9906bcd"
+            ]
+        ]
+    },
+    {
+        "id": "a21f1776b3fff9c2",
+        "type": "smeSender",
+        "z": "dcf1f7d23dd6b81a",
+        "connector": "e0fddb9c0f45f707",
+        "async": "0",
+        "name": "",
+        "actionName": "channel_message_send",
+        "actionText": "Channel - Send Message",
+        "recipientId": "",
+        "recipientIdType": "str",
+        "messageId": "",
+        "messageIdType": "str",
+        "limit": 0,
+        "limitType": "num",
+        "recipientIds": "",
+        "recipientIdsType": "str",
+        "groupChatId": "",
+        "groupChatIdType": "str",
+        "channelId": "#:(file)::savedChannelId",
+        "channelIdType": "flow",
+        "title": "",
+        "titleType": "str",
+        "saveLocation": "#:(file)::savedImageId",
+        "saveLocationType": "flow",
+        "saveRequestIdLocation": "savedRequestId",
+        "saveRequestIdLocationType": "msg",
+        "cameraList": [],
+        "logToConsole": false,
+        "x": 1030,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b7ae78189280d3d0",
+        "type": "debug",
+        "z": "dcf1f7d23dd6b81a",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "d5b41273e3e445cb",
+        "type": "change",
+        "z": "dcf1f7d23dd6b81a",
+        "name": "delete image Id from context",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "#:(file)::savedImageId",
+                "pt": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 600,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ea5fbee0a4b26581",
+        "type": "debug",
+        "z": "dcf1f7d23dd6b81a",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "965df41eaa7cda03",
+        "type": "sensecap-config",
+        "name": "SenseCAP_ApiKey",
+        "broker": "sensecap-openstream.seeed.cc",
+        "port": 1883,
+        "displayOrgid": "441535802311424",
+        "clientid": "org-441535802311424-so4w4tmh",
+        "serverRadio": 1,
+        "autoConnect": true,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "randomStr": "so4w4tmh"
+    },
+    {
+        "id": "e0fddb9c0f45f707",
+        "type": "sme-main-connector",
+        "name": "SenseCAP",
+        "apiKeyType": "str"
+    }
+]
